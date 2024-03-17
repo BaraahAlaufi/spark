@@ -1,0 +1,43 @@
+h1{background-image: url(header.jpg);
+    color: #efefef;
+    text-align: center;
+    padding: 90px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    font-family: f1;
+    }
+
+h5{background-color: #efefef;
+    text-align: center;
+    color: #232831;
+    padding: 10px;
+    font-size: 1.8vw;}
+
+@font-face {
+    font-family: f1;
+    src: url(Formula1-Bold.otf);}
+
+img{width: 22vw;
+    object-position: center center;}
+
+p.Round{color: #ce2029;
+        font-family: f1;
+        font-size: 2.5vw;
+        text-align: center;}
+
+p.circuit{color: #efefef;
+        font-size: 1.5vw;
+        text-align: center;
+        font-weight: bold;}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ce2029;
+  color: #232831;
+  text-align: center;}
+
+#vp {font-size: 8.3vw;}
