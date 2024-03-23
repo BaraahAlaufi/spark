@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+
+  </head>
     <style>
         h1{
             background-image: url(header.jpg);
@@ -37,27 +43,31 @@
         Tickets Now On Sale
 
     </h3>
-    <button  type="button" style="background-color: #ce2029 ; color: #efefef; font-size: 30px;">FIND TICKETS!</button>
+    <button  type="button" style="background-color: #ce2029 ;  font-size: 30px;"><a href="tickets.html" style="color:#efefef ;" >FIND TICKETS!</a></button>
 
     <table style="width:100%">
         <tr style="color: #ce2029; font-size: 30px; align-content: center;">
           <td>
-            <img src="race.jpg" alt="f1 car" width=" 450" height="200">
-        </td>
-          <td>
-            <img src="teams.jpg" alt="f1 teams" width=" 450" height="200">
+             <button  type="button"  > <a href="schedule.html" ><img src="race.jpg" alt="f1 car" width=" 450" height="200"> </a></button>
 
         </td>
           <td>
-            <img src="news.jpg" alt="f1 teams" width=" 450" height="200">
+             <button  type="button" >  <a href="teams.html" ><img src="teams.jpg" alt="f1 teams" width=" 450" height="200"></a> </button>
+
+        </td>
+          <td>
+             <button  type="button" > <a href="news.html" ><img src="news.jpg" alt="f1 teams" width=" 450" height="200"></a></button>
+
+            
 
         </td>
         </tr>
       
         <tr style="color: #efefef; text-align: center; font-size: 25px;">
-          <td> <button  type="button" style=" color: #ce2029; font-size: 30px;">Race Schedule</button></td>
-          <td> <button  type="button" style=" color: #ce2029; font-size: 30px;">Teams</button></td>
-          <td> <button  type="button" style=" color: #ce2029; font-size: 30px;">News</button></td>
+          <td> <button  type="button" style=" color: #ce2029; font-size: 30px;"> <a href="schedule.html" style=" color: #ce2029;">Race Schedule</a></button></td>
+          <td> <button  type="button" style=" color: #ce2029; font-size: 30px;"> <a href="teams.html" style=" color: #ce2029;">Teams</a></button></td>
+          <td> <button  type="button" style=" color: #ce2029; font-size: 30px;"> <a href="news.html" style=" color: #ce2029;">News</a></button></td>
+
         </tr>
         
 
@@ -66,10 +76,14 @@
 
        
       </table>
-<div class="footer"><button  type="button" style=" color: #232831; font-size: 30px; background-color: #ce2029; ">Log In</button></div>
-            <br>
-            <br>
-            <br>
+      <br>
+       <br>
+      <div class="row d-flex justify-content-center align-items-center" style="background-color: #Ce2029; height: 80px;">
+        <div class="col"> <a href="LogIn.html" class="btn" style="background-color: #3d424d; color: #efefef;">Log in</a> </div>
+        <div class="col"> <a href="SignUp.html" class="btn" style="background-color: #3d424d; color: #efefef;">Sign up</a> </div>
+        <div class="col"> <a href="contact.html" class="btn" style="background-color: #3d424d; color: #efefef;">Contact us</a> </div>
+    </div>            <br>
+            
             <br>
 
 
