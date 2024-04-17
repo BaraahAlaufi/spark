@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+
+  </head>
+    <style>
+        h1{
+            background-image: url(header.jpg);
+             color: #efefef;
+             font-family: f1;
+             text-align: center;
+             padding: 90px;
+             background-repeat: no-repeat;
+             background-size: cover;
+             background-position: center center ;
+
+
+        }
+        @font-face {
+          font-family: f1;
+          src: url(Formula1-Bold.otf);}
+    
+       
+       
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color:#Ce2029;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        h5{
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #232831;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: #232831;
+        }
+        input[type="submit"] {
+            background-color: #232831;
+            color: #efefef;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #Ce2029;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="background-color: #232831;">
+
+    <nav class="navbar navbar-expand-sm navbar-dark" >
+                    
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Logo" style="width: 60px;">
+        </a>
+
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li>
+        <li class="nav-item"><a class="nav-link" href="tickets.html">Tickets</a></li>
+        <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+        <li class="nav-item"><a class="nav-link " href="LogIn.html">Log in</a></li>
+        <li class="nav-item"><a class="nav-link" href="SignUp.html">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="calculation.html">Calculation</a></li>
+
+    </ul>
+    </ul>
+</nav> 
+
+<h1 id="vp">
+Tickets Calculation
+</h1>
+    <div class="container">
+        <h2>Formula 1 Ticket Purchase</h2>
+        <h5 style="background-color: #Ce2029;">Tickets pirces starts from 27.65 €</h5>
+        <h5 style="background-color: #Ce2029;">10% discount when buying three or more tickets!!</h5>
+        <form id="ticketForm">
+            <div class="form-group">
+                <label for="quantity">Number of Tickets:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+            </div>
+            <input type="submit" value="Calculate Total">
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // JavaScript code for calculating total price
+            document.getElementById('ticketForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get quantity of tickets from the form
+            var quantity = parseInt(document.getElementById('quantity').value);
+
+            // Base ticket price
+            var basePrice = 27.65;
+
+            // Calculate total price
+            var totalPrice = basePrice * quantity;
+
+            // Apply discount if buying three or more tickets
+            if (quantity >= 3) {
+                var discount = totalPrice * 0.1; // 10% discount
+                totalPrice -= discount;
+            }
+
+            // Display the result
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = '<p>Total Price: €' + totalPrice.toFixed(2) + '</p>';
+        });
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="footer text-center">
+        <div class="row d-flex justify-content-center align-items-center" style="background-color: #Ce2029; height: 80px;">
+            <div class="col"> <a href="LogIn.html" class="btn" style="background-color: #3d424d; color: #efefef;">Log in</a> </div>
+            <div class="col"> <a href="SignUp.html" class="btn" style="background-color: #3d424d; color: #efefef;">Sign up</a> </div>
+            <div class="col"> <a href="contact.html" class="btn" style="background-color: #3d424d; color: #efefef;">Contact us</a> </div>
+        </div>
+
+     </div>      <br>
+</body>
+</html>

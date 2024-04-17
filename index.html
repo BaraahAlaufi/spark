@@ -2,128 +2,190 @@
 <html>
   <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      h1 {
+        background-image: url(header.jpg);
+        color: #efefef;
+        font-family: f1;
+        text-align: center;
+        padding: 90px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      @font-face {
+        font-family: f1;
+        src: url(Formula1-Bold.otf);
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: red;
+        color: white;
+        text-align: center;
+        z-index: 1000; 
+      }
+
+      /* Animation for the moving text banner */
+      @keyframes moveText {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      .moving-banner {
+        position: fixed;
+        bottom: 80px; 
+        left: 0;
+        width: 100%;
+        background-color: #232831;
+        color: #efefef;
+        padding: 10px 0;
+        text-align: center;
+        animation: moveText 20s linear infinite; 
+      }
+
+     /* Photo gallery */
+      .photo-gallery {
+        transform: translateY(-50%);
+        text-align: center; 
+      }
+
+      .photo-gallery img {
+        display: none;
+        width: 300px;
+        height: 450px;
+        margin: 0 auto; 
+      }
+
+   
+      .photo-gallery img:first-child {
+        display: block;
+      }
+
+    
+      .link-buttons {
+        position: relative; 
+        margin-bottom: 100px; 
+      }
+    </style>
 
   </head>
-    <style>
-       h1{
-            background-image: url(header.jpg);
-             color: #efefef;
-             font-family: f1;
-             text-align: center;
-             padding: 90px;
-             background-repeat: no-repeat;
-             background-size: cover;
-             background-position: center center ;
-
-
-        }
-        @font-face {
-          font-family: f1;
-          src: url(Formula1-Bold.otf);}
-        .footer {
-                position: fixed;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                background-color: red;
-                color: white;
-                text-align: center;}
-    </style>
   <body style="background-color: #232831;">
-    
-            <nav class="navbar navbar-expand-sm navbar-dark" >
-                    
-                    <a class="navbar-brand" href="#">
-                        <img src="logo.png" alt="Logo" style="width: 60px;">
-                    </a>
+    <nav class="navbar navbar-expand-sm navbar-dark">
+    <a class="navbar-brand" href="#">
+    <img src="logo.png" alt="Logo" style="width: 60px;">
+      </a>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li>
+        <li class="nav-item"><a class="nav-link" href="tickets.html">Tickets</a></li>
+        <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+        <li class="nav-item"><a class="nav-link " href="LogIn.html">Log in</a></li>
+        <li class="nav-item"><a class="nav-link" href="SignUp.html">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+        <li class="nav-item"><a class="nav-link" href="calculation.html">Calculation</a></li>
+      </ul>
+    </nav>
 
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
-                    <li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tickets.html">Tickets</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-                    <li class="nav-item"><a class="nav-link " href="LogIn.html">Log in</a></li>
-                    <li class="nav-item"><a class="nav-link" href="SignUp.html">Sign up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
-                </ul>
-        </nav> 
-    <h1 id="vp" >
-        IGNITE YOUR PASSION FOR F1
+    <h1 id="vp">
+      IGNITE YOUR PASSION FOR F1
     </h1>
-    <h2 style="color: #ce2029; font: bold; font-size: 30px ;">
-        2024<br>
-        Formula 1
 
+    <h2 style="color: #ce2029; font: bold; font-size: 30px;">
+      2024<br>
+      Formula 1
     </h2>
-    <h4 style="color: #ffeb00; font-size: 25px; ">
-        TAKE ADVANTAGE OF EARLY BIRD PRICING
+
+    <h4 style="color: #ffeb00; font-size: 25px;">
+      TAKE ADVANTAGE OF EARLY BIRD PRICING
     </h4>
+
     <h3 style="color: #efefef; font-size: 25px;">
-        Tickets Now On Sale
-
+      Tickets Now On Sale
     </h3>
-    <a href="tickets.html" class="btn" style="color:#efefef; background-color: #ce2029;" >FIND TICKETS!</a>
 
+    <a href="tickets.html" class="btn" style="color:#efefef; background-color: #ce2029;">FIND TICKETS!</a>
     <hr style="border: 10px;">
-
-      <table style="width:100%">
-        <tr style="color: #ce2029; font-size: 30px; align-content: center;">
-          <td>
-            <a href="schedule.html" class="btn">
-            <img src="race.jpg" alt="f1 car" width=" 390" height="200"></a>
-          </td>
-          <td>
-            <a href="teams.html" class="btn"><img src="teams.jpg" alt="f1 teams" width=" 390" height="200"></a>
-          </td>
-          <td>
-            <a href="news.html" class="btn"><img src="news.jpg" alt="f1 teams" width="390" height="200"></a>
-          </td>
-        </tr>
-        <tr style="color: #efefef;text-align: center; font-size: 25px;">
-          <td><a href="schedule.html" class="btn" style=" color: #ce2029;">Race Schedule</a></td>
-          <td><a href="teams.html" class="btn" style=" color: #ce2029;">Teams</a></td>
-          <td><a href="news.html" class="btn" style=" color: #ce2029;">News</a></td>
-        </tr>
-      </table>
-      <br>
-       <br>
-      <div class="footer text-center">
-            <div class="row d-flex justify-content-center align-items-center" style="background-color: #Ce2029; height: 80px;">
-                <div class="col"> <a href="LogIn.html" class="btn" style="background-color: #3d424d; color: #efefef;">Log in</a> </div>
-                <div class="col"> <a href="SignUp.html" class="btn" style="background-color: #3d424d; color: #efefef;">Sign up</a> </div>
-                <div class="col"> <a href="contact.html" class="btn" style="background-color: #3d424d; color: #efefef;">Contact us</a> </div>
-            </div>
+    <table style="width:100%">
+      <tr style="color: #ce2029; font-size: 30px; align-content: center;">
+        <td>
+        <a href="schedule.html" class="btn">
+        <img src="race.jpg" alt="f1 car" width="390" height="200">
+        </a>
+        </td>
+        <td>
+          <a href="teams.html" class="btn"><img src="teams.jpg" alt="f1 teams" width="390" height="200"></a>
+        </td>
+        <td>
+          <a href="news.html" class="btn"><img src="news.jpg" alt="f1 teams" width="390" height="200"></a>
+        </td>
+      </tr>
+      <tr style="color: #efefef;text-align: center; font-size: 25px;">
+        <td><a href="schedule.html" class="btn" style=" color: #ce2029;">Race Schedule</a></td>
+        <td><a href="teams.html" class="btn" style=" color: #ce2029;">Teams</a></td>
+        <td><a href="news.html" class="btn" style=" color: #ce2029;">News</a></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Photo gallery -->
+    <div class="photo-gallery" >
+      <img src="car.jpg" alt="Car" id="photo1">
+      <img src="news3.png" alt="News 3" id="photo2">
+      <img src="news1.png" alt="New 1" id="photo3">
+    </div>
+  
+    <div class="link-buttons">
+      <a href="questionnaire.html" class="btn" style="background-color: #ffeb00; color: #Ce2029; margin-right: 170px; margin-left: 200px;">Questionnaire</a>
+      <a href="calculation.html" class="btn" style="background-color: #ffeb00; color: #Ce2029; margin-right: 170px;">Calculation</a>
+      <a href="fun.html" class="btn" style="background-color: #ffeb00; color: #Ce2029;">Fun</a>
+    </div>
     
-         </div>              <br>
-            
-            <br>
-
-
+    
+    <div class="footer text-center">
+      <div class="row d-flex justify-content-center align-items-center" style="background-color: #Ce2029; height: 80px;">
+        <div class="col"> <a href="LogIn.html" class="btn" style="background-color: #3d424d; color: #efefef;">Log in</a> </div>
+        <div class="col"> <a href="SignUp.html" class="btn" style="background-color: #3d424d; color: #efefef;">Sign up</a> </div>
+        <div class="col"> <a href="contact.html" class="btn" style="background-color: #3d424d; color: #efefef;">Contact us</a> </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="moving-banner">
+      <span>Welcome to the Spark website for F1 Audience! Today is <span id="currentDate"></span>, and the time is <span id="currentTime"></span></span>
+    </div>
+    <script>
+      
+      setInterval(function() {
+        var currentDate = new Date().toLocaleDateString();
+        var currentTime = new Date().toLocaleTimeString();
+        document.getElementById('currentDate').innerText = currentDate;
+        document.getElementById('currentTime').innerText = currentTime;
+      }, 1000); // Update every second
+      
+      
+      var photos = document.querySelectorAll('.photo-gallery img');
+      var index = 0;
+      setInterval(function() {
+        photos[index].style.display = 'none';
+        index = (index + 1) % photos.length;
+        photos[index].style.display = 'block';
+      }, 3000); // Change photo every 3 seconds
+    </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
