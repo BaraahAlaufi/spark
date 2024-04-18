@@ -51,3 +51,23 @@ img.teamPage{ width: 35vw;
     font-size: 1.5vw;}
 
 p{color: #efefef; font-size: 17px; border: none; border:1px; font-weight: 250; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #2a2e35;
+}
+
+.buttons{
+    display: flex;
+    margin-top: 20px;
+    justify-content:space-evenly;
+}
+
+#game{
+    color: #efefef;
+    background-color: #ce2029;
+    padding: 5px;
+}
+
