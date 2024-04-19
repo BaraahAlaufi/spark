@@ -42,8 +42,8 @@
             <h1  class="head" id="vp">NEWS</h1> 
         </div>
 
-<div class="row">
-        <table class="table container" >
+<div class="row"> <!--table 1-->
+        <table class="table container" id="table1" >
             <tr style="background-color: #Ce2029; height: 70px; vertical-align: middle;">
                  <td colspan="2" style="font-size: 18px;">Join us to explore the latest headlines and stories!</td>
             </tr>
@@ -93,8 +93,42 @@
             </div>
         </div>
 
-        <hr style="border-top: 1px solid #8a8484">
-        <div class="footer text-center">
+<hr style="border-top: 1px solid #8a8484"> <br/>
+        <div class="row"> <!--table 2-->
+            <table class="table container" id="table2">
+                <tr>
+                    <td> <img src="news5.png" alt="news5"> </td>
+                    <td> <img src="news6.png" alt = "news6"></td>
+                </tr>
+                <tr >
+                    <th>Alonso 'extremely happy' after emerging from 'stressful' Sprint Qualifying with P3
+                    </th>
+                    <th>How sustainable fuels can benefit the world - and are more than just the future of F1
+                    </th>
+                </tr> 
+                <tr>
+                    <td> Fresh from signing a new contract with the team, Alonso squeezed his way into SQ3 in dry conditions and then, as rain arrived and the field switched to intermediates, slotted behind McLaren's Lando Norris and 'Mercedes' Lewis Hamilton. </td>
+                    <td>Formula 1, a sport known for its technological advancements, is set to introduce a new era in 2026. The sport will introduce 100% advanced sustainable fuels, replacing the current F1 hybrid power units, which already use 10% ethanol biofuel. This move will help pioneer a technological revolution.
+                    </td>    
+                </tr>
+            </table></div>
+        <br/>
+
+      
+        <!--seaching bar-->
+        <div class="mb-3 mt-3 container-fluid row d-flex justify-content-center" >
+            
+             <div class="col-8">
+                <input type="text" class="form-control" style="background-color: #3d424d; color:#efefef" id="searching" placeholder="What are you looking for...?">
+            </div>
+            <div class="col-4"> 
+                <button onclick="searchNews()" class="btn btn-primary" style="background-color: #Ce2029; color: #efefef;">Search News</button>
+            </div>
+        </div> <br/>
+
+  <hr style="border-top: 1px solid #8a8484"> 
+
+        <div class="footer text-center"> <!--footer-->
             <p>Keep up with the fast-paced world of Formula 1 racing and stay ahead of the competition with our comprehensive coverage and exclusive insights.</p>
     
             <div class="row d-flex justify-content-center align-items-center" style="background-color: #Ce2029; height: 80px;">
@@ -102,7 +136,60 @@
                 <div class="col"> <a href="SignUp.html" class="btn" style="background-color: #3d424d; color: #efefef;">Sign up</a> </div>
                 <div class="col"> <a href="contact.html" class="btn" style="background-color: #3d424d; color: #efefef;">Contact us</a> </div>
             </div>
-    
          </div>
+
+         <!--javaScript-->
+         <script>
+           function searchNews() {
+    var td, th, tr, i, txt, table;
+
+    // Get the search input value
+    var input = document.getElementById("searching").value.toLowerCase();
+
+    //FIRST TABLE
+    table = document.getElementById("table1");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through each row in the table
+    for (i = 0; i < tr.length; i++) {
+        // Check for matches in both <td> and <th> elements
+        td = tr[i].getElementsByTagName("td")[0];
+        th = tr[i].getElementsByTagName("th")[0];
+        if (td || th) {
+            txt = (td || th).textContent || (td || th).innerText; // Get the cell's text
+
+            // Check if the search input has a match in the cell
+            if (txt.toLowerCase().indexOf(input) > -1) {
+                tr[i].style.display = ""; // Display the row
+                tr[i].scrollIntoView({ behavior: "smooth", block: "center" }); //Scroll to the row
+                
+                //show up the cell and the text
+                (td || th).style.backgroundColor = "#Ce2029";
+                (td || th).style.color = "#efefef";   }
+        }    }
+
+
+
+    //SECOND TABLE
+    table = document.getElementById("table2");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through each row in the table
+    for (i = 0; i < tr.length; i++) {
+        // Check for matches in both <td> and <th> elements
+        td = tr[i].getElementsByTagName("td")[0];
+        th = tr[i].getElementsByTagName("th")[0];
+        if (td || th) {
+            txt = (td || th).textContent || (td || th).innerText; // Get the cell's text
+
+            // Check if the search input has a match in the cell
+            if (txt.toLowerCase().indexOf(input) > -1) {
+                tr[i].style.display = ""; // Display the row
+                tr[i].scrollIntoView({ behavior: "smooth", block: "center" }); // Scroll to the row
+                (td || th).style.backgroundColor = "#Ce2029"; //show up the cell and the text
+                (td || th).style.color = "#efefef";
+            }
+        }
+    }}     </script>
     </body>
 </html>
