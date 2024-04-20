@@ -282,27 +282,29 @@
          </div>
         
          <script>
-            //Defining an object type for race information
+            //OBJECT RACE
+            //defining an object for each race information
             function Race(round, circuit, date){
-                this.round = round;
+                this.round = round; //assigining each race's data
                 this.circuit = circuit;
                 this.date = date;}
     
+            //DATA    
             //making an array for all the table's data (races)
             var races = [
             new Race("Round 1", "Bahrain International Circuit", "29 FEB - 02 MAR"),
             new Race("Round 2","Jedda Cornich Circuit, Saudi Arabia", "07 MAR - 09 MAR"),
             new Race("Round 3", "Melbourne Grand Prix Circuit, Australia","22 MAR - 24 MAR"),
-            new Race("Round 4", "Suzuka International Racing Course, Japan", "05 APR - 07 APR"),
-            new Race("Round 5", "Shanghai International Circuit, China", "19 APR - 21 APR"),
-            new Race("Round 6", " Miami International Autodrome, United States","03 MAY - 06 MAY"),
+            new Race ("Round 4", "Suzuka International Racing Course, Japan", "05 APR - 07 APR"),
+            new Race ("Round 5", "Shanghai International Circuit, China", "19 APR - 21 APR"),
+            new Race ("Round 6", " Miami International Autodrome, United States","03 MAY - 06 MAY"),
             new Race("Round 7","Autodromo Enzo e Dino Ferrari, Italy", "17 MAY - 19 MAY"),
             new Race("Round 8", "Circuit de Monaco, Monaco","24 MAY - 26 MAY"),
             new Race("Round 9", "Circuit Gilles-Villeneuve, Canada", "07 JUN - 09 JUN"),
             new Race("Round 10", "Circuit de Barcelona-Catalunya, Spain", "21 JUN - 23 JUN"),
             new Race("Round 11","Red Bull Ring, Austria", "28 JUN - 30 JUN"),
             new Race(" Round 12", "Silverstone Circuit, Great Britain", "05 JUL - 07 JUL"),
-            new Race("Round 13", "Hungaroring, Hungary", "19 JUL - 21 JUL"),
+            new Race ("Round 13", "Hungaroring, Hungary", "19 JUL - 21 JUL"),
             new Race("Round 14", "Circuit de Spa-Francorchamps, Belgium", "26 JUL - 28 JUL"),
             new Race("Round 15", " Circuit Zandvoort, Netherlands", "23 AUG - 25 AUG"),
             new Race("Round 16","Autodromo Nazionale Monza, Italy", "30 AUG - 01 SEP"),
@@ -311,18 +313,40 @@
             new Race("Round 19", "Circuit of the Americas, United States", "18 OCT - 20 OCT"),
             new Race("Round 20", "Autódromo Hermanos Rodríguez, Mexico", "25 OCT - 27 OCT"),
             new Race("Round 21","Autódromo José Carlos Pace, Brazil", "01 NOV - 03 NOV"),
-            new Race("Round 22","Las Vegas Strip Circuit, United States", "21 NOV - 23 NOV"),
+            new Race ("Round 22","Las Vegas Strip Circuit, United States", "21 NOV - 23 NOV"),
             new Race("Round 23", "Lusail International Circuit, Qatar","29 NOV - 01 DEC"),
             new Race("Round 24", "Yas Marina Circuit, Abu Dhabi","06 DEC - 08 DEC")
         ];
     
-            // Function to display the table after searchng
+            
+            //SEARCHING THROUGH DATA
+            function search() {
+                var input = document.getElementById("searchInput").value.toLowerCase(); //assigning the input in a variable
+                var filter = races.filter(race => { //going through all array's data (each race in races)
+                    return race.round.toLowerCase().includes(input) || //checking every race for its round, circuit or date if it includes the same searched input
+                           race.circuit.toLowerCase().includes(input) ||
+                           race.date.toLowerCase().includes(input);
+                });
+                //check if there are search results
+                if (filter.length > 0) {
+                    //display search results
+                    Show(filter);
+                    var table = document.getElementById("raceTable"); 
+
+                //to create a title for the results
+                    var headerRow = table.insertRow(0);//creating another row as a title holder
+                    var headerCell = headerRow.insertCell(0); 
+                    headerCell.colSpan = 3; //merge the whole row as 1 col
+                    headerCell.textContent = "Search Results"; //displying title search results
+
+            }}
+
+            //DISPLAYING THE DATA
             function Show(data) {
                 var table = document.getElementById("raceTable"); //getting the table with the id raceTable in a variable
     
                 table.innerHTML = ""; //clear the previous data searched
     
-                
                 var headerRow = table.insertRow(); //create tje table's header
                 var headers = ["Round", "Circuit", "Date"];
                 headers.forEach(header => { //loop to go in each colom
@@ -331,9 +355,7 @@
                     headerRow.appendChild(th); //adding a new colom in the sam row 
                 });
     
-                //adding the row
-                data.forEach(race => {
-
+                data.forEach(race => { //adding rows for each race
                     var row = table.insertRow();
                     var roundCell = row.insertCell(0); //inserting 3 cells in the same row
                     var circuitCell = row.insertCell(1);
@@ -341,40 +363,7 @@
     
                     roundCell.textContent = race.round; //adding the data from the object on each cell
                     circuitCell.textContent = race.circuit;
-                    dateCell.textContent = race.date;});
-}
-    
-            
-    
-            //function to display search results
-            function displaySearchResults(results) {
-                //check if there are search results
-                if (results.length > 0) {
-
-                    //display search results
-                    Show(results);
-                    var table = document.getElementById("raceTable");
-
-                //to create a title for the results
-                      var headerRow = table.insertRow(0);
-                    var headerCell = headerRow.insertCell(0); //creating another row as a title holder
-                    headerCell.colSpan = 3; //merge the whole row as 1 col
-                    headerCell.textContent = "Search Results"; //displying title search results
-                  
-                }
-            }
-    
-            //searching function
-            function search() {
-                var input = document.getElementById("searchInput").value.toLowerCase(); //assigning the input in a variable
-                var filter = races.filter(race => {
-                    return race.round.toLowerCase().includes(input) || //checking every race for its round, circuit or date if it includes the same searched input
-                           race.circuit.toLowerCase().includes(input) ||
-                           race.date.toLowerCase().includes(input);
-                });
-                displaySearchResults(filter); //display the result using another function
-            }
-
+                    dateCell.textContent = race.date;});}
         </script>
 
 
