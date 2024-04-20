@@ -37,7 +37,7 @@
             <h5>EXPLORE MORE ABOUT YOUR FAVORITE TEAM </h5>
         </div>
 <div class="container" style="background-color: #232831;"> 
-        <form class="container-fluid mt-5 d-flex justify-content-center text-center" onsubmit="event.preventDefault(); search();">
+        <form class="container-fluid mt-5 d-flex justify-content-center text-center" onsubmit="event.preventDefault(); search();"> <!--stopping the from from being submitted and serch function instead-->
             <div class="col-8">
                 <input type="text" class="form-control" style="background-color: #3d424d; color:#efefef" id="searchInput" placeholder="Search for a Team...">
             </div>
@@ -45,7 +45,7 @@
                 <button type="submit" class="btn btn-primary" style="background-color: #Ce2029; color: #efefef;">Search</button>
             </div>
         </form>
-        
+        <br/>
         <div class="container justify-content-center" style="background-color: #232831;">
             <table class="table mt-3" id="teamsTable"></table>
         </div>
@@ -136,13 +136,15 @@
          </div>
 
          <script>
-
-            function Team(name, country, championships) { //creating a team object with 3 variables for each
+            //TEAM object
+            function Team(name, country, championships) { //defining an object for the data
                 this.name = name;
                 this.country = country;
                  this.championships = championships;
             }
-            var teams = [ //creating an array with all team objects to search from
+
+            //TEAMS DATA 
+            var teams = [ //creating an array with all team objects to search from (including the country and champions)
                 new Team("Red Bull", "Austria", 4),
                 new Team("Ferrari","Italy",16),
                 new Team("Mercedes", "Germany", 8) ,
@@ -155,7 +157,30 @@
                 new Team("Alpine","France", 2)
     ];
 
-    
+    //SEARCHING 
+    function search() {
+        var input = document.getElementById("searchInput").value.toLowerCase(); //assign the input value to a variable
+        var filter = teams.filter(team => {
+            return team.name.toLowerCase().includes(input) || //check every team for its name, country, or championships if it includes the searched input
+                team.country.toLowerCase().includes(input) ||
+                team.championships.toString().includes(input);
+        });
+
+        //displaying the found data in a schedule
+        if (filter.length > 0){ //checking if exists any results
+            Show(filter);
+            var table = document.getElementById("teamsTable");
+
+            //create a title for the results
+            var headerRow = table.insertRow(0);
+            var headerCell = headerRow.insertCell(0); //inserting another row as a title holder
+                headerCell.colSpan = 3; //merge the whole row as 1 column
+                headerCell.textContent = "Search Results"; // Displaying title search results 
+            }
+    }
+
+
+    //DISPLAYING FUNCTION
     function Show(data){ //displaying the team using  function
         var table = document.getElementById("teamsTable"); //assigning the empty table to add data on it
         table.innerHTML = ""; //making sure its empty
@@ -169,8 +194,9 @@
             headerRow.appendChild(th); //creating new colom for the next header
         }
         );
-        data.forEach(team => { //loop for each row to be printed
-            var row = table.insertRow();
+
+        data.forEach(team => { //loop for each team to be printed
+            var row = table.insertRow(); //new row
             var nameCell = row.insertCell(0); //creating 3 more cells in the next row
             var countryCell = row.insertCell(1);
             var championshipsCell = row.insertCell(2);
@@ -181,32 +207,6 @@
         });
     }
 
-
-    function displayResults(results) { //displaying function
-        if (results.length > 0){ //printing if there exists results of the search
-            Show(results);
-            var table = document.getElementById("teamsTable");
-
-            // Create a title for the results
-            var headerRow = table.insertRow(0);
-            var headerCell = headerRow.insertCell(0); //inserting another row as a title holder
-                headerCell.colSpan = 3; //merge the whole row as 1 column
-                headerCell.textContent = "Search Results"; // Displaying title search results
-}}
-
-    // Search function
-    function search() {
-        var input = document.getElementById("searchInput").value.toLowerCase(); // Assign the input value to a variable
-        var filter = teams.filter(team => {
-            return team.name.toLowerCase().includes(input) || // Check every team for its name, country, or championships if it includes the searched input
-                team.country.toLowerCase().includes(input) ||
-                team.championships.toString().includes(input);
-        });
-        displayResults(filter); //display the results using another function
-    
-    }
-
          </script>
-         
     </body>
 </html>
