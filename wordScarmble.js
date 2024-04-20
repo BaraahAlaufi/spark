@@ -91,9 +91,7 @@ function initGame() {
     //shuffle the letters
     for (let i = wordArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        const temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
     }
     wordText.innerText = wordArray.join("");//display the srcambled word
     hintText.innerText = randomObj.hint;//display the hint
