@@ -2,6 +2,8 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <link rel="stylesheet" href="styles.css">
 
         <title>SPARK: race schedule</title>
@@ -40,15 +42,90 @@
 
         <div class="container justify-content-center" style="background-color: #232831;">
             
-           <form class="container-fluid mt-5 d-flex justify-content-center text-center" onsubmit="event.preventDefault(); search();">
-                <div class="col-8">
-                    <input type="text" class="form-control" style="background-color: #3d424d; color:#efefef" id="searchInput" placeholder="Search for a Race...">
+        <div class="col-2" style="margin-left:9.5%;padding-top:20px;margin-bottom: -50px;">
+            <button type="button" class="btn btn-primary" style="background-color: #Ce2029; color: #efefef;" name="add" onclick="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add</button>
+
+             <button type="button" class="btn btn-primary" style="background-color: #Ce2029; color: #efefef;" name="delete" onclick="" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Delete</button>
+        </div>
+
+
+        <form id="raceForm" class="container-fluid mt-5 d-flex justify-content-center text-center" action="raceSearch.php" method="post">
+            <div class="col-8">
+                <input type="text" class="form-control" style="background-color: #3d424d; color:#efefef;width: 100%;" id="searchInput" name="input" placeholder="Search for a Race...">
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary" style="background-color: #Ce2029; color: #efefef;" name="search" onclick="getresult();">Search</button>
+            </div>
+           
+        </form>
+
+
+        <div class="col-12" style="margin-left:8%;">
+            <div id="result" class="container justify-content-center" style="background-color: #232831;">
+            </div>
+        </div>
+
+        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+            <div class="modal-dialog" >
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="staticBackdropLabel" style="color: #000;">ADD RACE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                <div class="modal-body" style="background-color:#3d424d;">
+                   
+                    <form id="raceADDForm"  class="form-group" style="margin: 10px;"  action="addrace.php" method="post">
+                        <div class="mb-3 mt-3" >
+                            <label for="round" class="form-label" style="color: #efefef;">Round:</label>
+                            <input type="text"  style="background-color: #3d424d; color:#efefef" class="form-control" id="round" placeholder=" Please enter round number" name="round" required>
+                        </div>
+
+                        <div class="mb-3 mt-3" >
+                            <label for="circuit" class="form-label" style="color: #efefef;"> Circuit:</label>
+                            <input type="text"  style="background-color: #3d424d; color:#efefef" class="form-control" id="circuit" placeholder=" Please enter circuit" name="circuit" >
+                        </div>
+                         <div class="mb-3 mt-3" >
+                            <label for="date" class="form-label" style="color: #efefef;"> Date:</label>
+                            <input type="text"  style="background-color: #3d424d; color:#efefef" class="form-control" id="date" placeholder=" Please enter date" name="date" >
+                        </div>
+                    </form>
+
+
                 </div>
-                <div class="col-4">
-                    <button type="submit" class="btn btn-primary" style="background-color: #Ce2029; color: #efefef;">Search</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="addfunction();">ADD</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
                 </div>
-            </form>
-            
+            </div>
+        </div>
+
+          <div class="modal fade " id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+            <div class="modal-dialog" >
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="staticBackdropLabel" style="color: #000;">ADD RACE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                <div class="modal-body" style="background-color:#3d424d;">
+                   
+                    <form id="raceDELForm"  class="form-group" style="margin: 10px;"  action="delrace.php" method="post">
+                        <div class="mb-3 mt-3" >
+                            <label for="round1" class="form-label" style="color: #efefef;">Round:</label>
+                            <input type="text"  style="background-color: #3d424d; color:#efefef" class="form-control" id="round1" placeholder=" Please enter round number" name="round1" required>
+                        </div>
+                    </form>
+
+
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="deletefunction();">DELETE</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
             <div class="container justify-content-center" style="background-color: #232831;">
                 <table class="table mt-3" id="raceTable"></table>
             </div>
@@ -282,43 +359,75 @@
          </div>
         
          <script>
+
+            function getresult(){
+                var form = document.getElementById("raceForm");
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = this.responseText;
+                }
+                };
+                xhr.open("POST", form.action, true);
+                xhr.send(formData);
+            }
+            
+            $('#staticBackdrop').on('shown.bs.modal', function () {
+                $('#round').focus();  
+            });
+
+             $('#staticBackdrop1').on('shown.bs.modal', function () {
+                $('#round1').focus();  
+            });
+
+            function addfunction(){
+                if(round.value==''||round.value==null){ $('#round').focus();return false;}
+                if(circuit.value==''||circuit.value==null){ $('#circuit').focus();return false;}
+                if(date.value==''||date.value==null){ $('#date').focus();return false;}
+                var form = document.getElementById("raceADDForm");
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = this.responseText;
+                    $('#staticBackdrop').modal('hide');
+                    round.value='';circuit.value='';date.value='';
+                }
+                };
+                xhr.open("POST", form.action, true);
+                xhr.send(formData);
+            }
+
+            function deletefunction(){
+                if(round1.value==''||round1.value==null){ $('#round1').focus();return false;}
+                var form = document.getElementById("raceDELForm");
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = this.responseText;
+                    $('#staticBackdrop1').modal('hide');
+                    round1.value=''; 
+                }
+                };
+                xhr.open("POST", form.action, true);
+                xhr.send(formData);
+            }
+
+            
+
+            document.getElementById("searchInput").addEventListener("keydown", function(event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+
+            //*******************************************************************
+
             //OBJECT RACE
             //defining an object for each race information
-            function Race(round, circuit, date){
-                this.round = round; //assigining each race's data
-                this.circuit = circuit;
-                this.date = date;}
-    
-            //DATA    
-            //making an array for all the table's data (races)
-            var races = [
-            new Race("Round 1", "Bahrain International Circuit", "29 FEB - 02 MAR"),
-            new Race("Round 2","Jedda Cornich Circuit, Saudi Arabia", "07 MAR - 09 MAR"),
-            new Race("Round 3", "Melbourne Grand Prix Circuit, Australia","22 MAR - 24 MAR"),
-            new Race ("Round 4", "Suzuka International Racing Course, Japan", "05 APR - 07 APR"),
-            new Race ("Round 5", "Shanghai International Circuit, China", "19 APR - 21 APR"),
-            new Race ("Round 6", " Miami International Autodrome, United States","03 MAY - 06 MAY"),
-            new Race("Round 7","Autodromo Enzo e Dino Ferrari, Italy", "17 MAY - 19 MAY"),
-            new Race("Round 8", "Circuit de Monaco, Monaco","24 MAY - 26 MAY"),
-            new Race("Round 9", "Circuit Gilles-Villeneuve, Canada", "07 JUN - 09 JUN"),
-            new Race("Round 10", "Circuit de Barcelona-Catalunya, Spain", "21 JUN - 23 JUN"),
-            new Race("Round 11","Red Bull Ring, Austria", "28 JUN - 30 JUN"),
-            new Race(" Round 12", "Silverstone Circuit, Great Britain", "05 JUL - 07 JUL"),
-            new Race ("Round 13", "Hungaroring, Hungary", "19 JUL - 21 JUL"),
-            new Race("Round 14", "Circuit de Spa-Francorchamps, Belgium", "26 JUL - 28 JUL"),
-            new Race("Round 15", " Circuit Zandvoort, Netherlands", "23 AUG - 25 AUG"),
-            new Race("Round 16","Autodromo Nazionale Monza, Italy", "30 AUG - 01 SEP"),
-            new Race("Round 17", "Baku City Circuit, Azerbaijan", "13 SEP - 15 SEP"),
-            new Race("Round 18", "Marina Bay Street Circuit, Singapore", "20 SEP - 22 SEP"),
-            new Race("Round 19", "Circuit of the Americas, United States", "18 OCT - 20 OCT"),
-            new Race("Round 20", "Autódromo Hermanos Rodríguez, Mexico", "25 OCT - 27 OCT"),
-            new Race("Round 21","Autódromo José Carlos Pace, Brazil", "01 NOV - 03 NOV"),
-            new Race ("Round 22","Las Vegas Strip Circuit, United States", "21 NOV - 23 NOV"),
-            new Race("Round 23", "Lusail International Circuit, Qatar","29 NOV - 01 DEC"),
-            new Race("Round 24", "Yas Marina Circuit, Abu Dhabi","06 DEC - 08 DEC")
-        ];
-    
-            
+           
             //SEARCHING THROUGH DATA
             function search() {
                 var input = document.getElementById("searchInput").value.toLowerCase(); //assigning the input in a variable
