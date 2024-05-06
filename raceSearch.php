@@ -1,5 +1,5 @@
 <?php
-require_once "dbcon.php";
+require_once "connection.php";
 
 $word = ""; //for the search input
 
