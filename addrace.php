@@ -1,5 +1,5 @@
 <?php
-require_once "dbcon.php";
+require_once "connection.php";
 
 $round = $_POST['round'];
 $circuit = $_POST['circuit'];
