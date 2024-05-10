@@ -1,0 +1,1 @@
+a:2:{i:0;a:2:{s:4:"rate";s:1:"5";s:8:"feedback";s:39:"add barcode to access purchased tickets";}i:7;a:2:{s:4:"rate";s:1:"4";s:8:"feedback";s:53:"add a feature for downloading the receipt as an image";}}
