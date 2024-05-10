@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
                     <li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="tickets.html">Tickets</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="purchase.php">Tickets</a></li>
                     <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
                     <li class="nav-item"><a class="nav-link " href="LogIn.html">Log in</a></li>
                     <li class="nav-item"><a class="nav-link" href="SignUp.html">Sign up</a></li>
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                     <li class="nav-item"><a class="nav-link" href="calculation.html">Calculation</a></li>
                     <li class="nav-item"><a class="nav-link" href="funPage.html">Fun Page</a></li>
-                    <li class="nav-item"><a class="nav-link" href="feedBack.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.php">Feedback</a></li>
                 </ul>
         </nav> 
         <div  >
